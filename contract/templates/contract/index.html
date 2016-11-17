@@ -1,0 +1,9 @@
+{% extends 'contract/base.html' %}
+
+{% load i18n table_tags cms_tags %}
+
+{% block content %}
+    {% placeholder content %}
+
+    {% render_table table %}
+{% endblock %}

@@ -1,0 +1,51 @@
+{% load staticfiles sekizai_tags cms_tags thumbnail %}
+
+
+<div class="slider {{ instance.slider_thumb_id }}">
+
+    <ul class="slides">
+        {% autoescape off %}
+        {% with slider_thumb_id=instance.slider_thumb_id simple_settings=instance.use_simple_settings %}
+            {% for plugin in instance.child_plugin_instances %}
+                {% render_plugin plugin %}
+<!--
+                    <li>
+                        <figure>
+                            {% if image.url %}
+                                {{ image }}
+                                <a href="{{ image.url }}"><img
+                                        src="{{ PUBLIC_URL }}{% thumbnail image.image 1920x500 upscale crop %}"
+                                        alt="{{ image.name }}"/></a>
+
+                                <img src="{{ PUBLIC_URL }}{% thumbnail image.image 1920x500 upscale crop %}"
+                                     alt="{{ image.name }}"/>
+                            {% endif %}
+                        </figure>
+                    </li>
+-->
+            {% endfor %}
+        {% endwith %}
+        {% endautoescape %}
+    </ul>
+</div>
+
+{% addtoblock "css" %}
+    <!-- Theme CSS -->
+    <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+{% endaddtoblock %}
+
+{% addtoblock "js" %}
+
+    <script src="{% static 'js/jquery.flexslider-min.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.slider').flexslider({
+                animation: "slide"
+                , slideshowSpeed: 4000
+                , pauseOnAction: false
+                , pauseOnHover: true
+                , controlNav: false
+            });
+        });
+    </script>
+{% endaddtoblock %}

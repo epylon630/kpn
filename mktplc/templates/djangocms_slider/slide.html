@@ -1,0 +1,56 @@
+{% load staticfiles i18n cms_tags sekizai_tags menu_tags thumbnail %}
+
+{% comment %}
+<li class="slideshow-slide">
+    {% if slider_thumb_id and not simple_settings %}
+        <img src="{{ instance.image | thumbnail_url:slider_thumb_id  }}" alt="{{ instance.alt }}"
+                {% if instance.longdesc %} title="{{ instance.longdesc }}"{% endif %} />
+    {% else %}
+        {% thumbnail instance.image "1920x480" crop="center" as thumb %}
+        <img src="{{ thumb.url }}" width="1920" height="480" alt="{{ instance.alt }}"{% if instance.longdesc %}
+             title="{{ instance.longdesc }}"{% endif %} />
+    {% endif %}
+</li>
+
+
+<li class="slideshow-slide">
+    {% if slider_thumb_id and not simple_settings %}
+        <img src="{{ instance.image | thumbnail_url:slider_thumb_id  }}" alt="{{ instance.alt }}"
+                {% if instance.longdesc %} title="{{ instance.longdesc }}"{% endif %} />
+    {% else %}
+        <a href="{{ instance.url }}" {% if instance.link_title %} title="{{ instance.link_title }}"{% endif %}>
+            {% thumbnail instance.image "1920x480" crop="center" as thumb %}
+            <img src="{{ thumb.url }}" width="1920" height="480" alt="{{ instance.alt }}"{% if instance.longdesc %}
+                 title="{{ instance.longdesc }}"{% endif %} />
+
+        </a>
+   {% endif %}
+</li>
+
+{% endcomment %}
+
+<li class="slideshow-slide">
+    <a href="{{ instance.url }}" {% if instance.link_title %} title="{{ instance.link_title }}"{% endif %}>
+        <header class="intro-header" style="background-image: url(
+                {% with image=instance.image %}
+                    {% if image %}
+                    		{% thumbnail image 1200x400 crop="smart"  %}
+			{% else %}
+                        	{% static 'img/about-bg.jpg' %}
+                    {% endif %}
+                {% endwith %}
+        )">
+            <div class="container">
+                <div class="row">
+			<div class="page-heading">
+                            <h1> {{ instance.caption }}</h1>
+                                <hr class="small">
+                                <span class="subheading">
+                                    {{ instance.caption }}
+                                </span>
+                        </div>
+                </div>
+            </div>
+        </header>
+    </a>
+</li>

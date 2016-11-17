@@ -1,0 +1,11 @@
+{% load  thumbnail %}
+
+<a href="{{ instance.url }}"
+    {% if instance.link_title %} title="{{ instance.link_title }}"{% endif %}>
+        {% with image=instance.icon_image %}
+            {% if image %}
+               <img class="img-circle" src = {% thumbnail image 100x100 crop subject_location=image.subject_location %}/>
+            {% endif %}
+            <h4>{{ instance.link_title }}</h4>
+        {% endwith %}
+</a>

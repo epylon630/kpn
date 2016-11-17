@@ -1,0 +1,91 @@
+{% extends 'contract/base.html' %}
+
+{% load i18n static staticfiles cms_tags %}
+
+ {% block extra_head %}
+     <title>Contract Summary</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1" />
+     <link href="{% static 'vendor/tabs/css/generic-notForTabs.css' %}" rel="stylesheet" type="text/css">
+     <link href="{% static 'vendor/tabs/css/responsive-tabs.css' %}" rel="stylesheet" type="text/css">
+     <script src="{% static 'vendor/tabs/js/responsive-tabs.js' %}"></script>
+
+<style type="text/css">
+	.TFtable{
+		width:100%;
+		border-collapse:collapse;
+	}
+	.TFtable td{
+		padding:7px; border:#4e95f4 1px solid;
+	}
+	/* provide some minimal visual accomodation for IE8 and below */
+	.TFtable tr{
+		background: #b8d1f3;
+	}
+	/*  Define the background color for all the ODD background rows  */
+	.TFtable tr:nth-child(odd){
+		background: #b8d1f3;
+	}
+	/*  Define the background color for all the EVEN background rows  */
+	.TFtable tr:nth-child(even){
+		background: #dae5f4;
+	}
+</style>
+
+
+
+ {% endblock %}
+
+{% block content %}
+
+        {% placeholder content %}
+    <table>
+    <tr>
+        <td>
+            YES
+        </td>
+        <td>
+            Test
+        </td>
+    </tr>
+    </table>
+
+    <div class="container1">
+        <ul class="rtabs">
+            <li><a href="#overview">Contract Overview</a></li>
+            <li><a href="#details">Contract Details</a></li>
+            <li><a href="#awarding_agency">Awarding Agency</a></li>
+            <li><a href="#instructions">Ordering Instructions</a></li>
+            <li><a href="#documentation">Documentation</a></li>
+        </ul>
+        <div class="panel-container">
+            <div id="overview">
+                <h2>Contract Overview</h2>
+                <table class="TFtable">
+	                <tr><td>Awarded Vendor</td><td>{{ offer.supplier_name }}</td></tr>
+	                <tr><td>Text</td><td>Text</td></tr>
+                </table>
+
+            </div>
+            <div id="details">
+                <h2>Contract Details</h2>
+
+
+            </div>
+            <div id="awarding_agency">
+                <h2>Awarding Agency</h2>
+
+            </div>
+            <div id="instructions">
+                <h2>Ordering Instructions</h2>
+
+            </div>
+            <div id="documentation">
+                <h2>Documentation</h2>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
